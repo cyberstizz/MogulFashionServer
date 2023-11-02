@@ -1,0 +1,21 @@
+*{
+    overflow-x: hidden;
+    font-family: 'Architects Daughter', cursive;
+}
+
+
+.hamburgerParent{
+    display: flex;
+    flex-direction: column;
+    height: 7vh;
+    width: 12vw;
+    margin-top: 1vh;
+    margin-left: 4vw;
+}
+
+.hamburgerRow{
+    background-color: black;
+    width: 100%;
+    height: 1.5rem; 
+    margin-top: 1vh;
+}

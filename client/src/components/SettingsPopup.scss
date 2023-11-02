@@ -1,0 +1,29 @@
+$mainBlue: #3FA396;
+$mainRed: #E63C23;
+$complimentaryGray: #D9D9D9;
+
+
+.fullSettingsPopupBlock { 
+    height: 100vh;
+    width: 100vw;
+    background-color: $mainBlue;
+    display: flex;
+    flex-direction: column;
+}
+
+.settingsLink{
+    font-size: 50px;
+    width: 100vw;
+    margin: 0 auto;
+    color: black;
+    margin-left: 20vw;
+    font-weight: 700;
+}
+
+.thisHomeLogo{
+    width: 30vw;
+    margin-left: 30vw;
+    border: 4px solid $mainRed;
+    border-radius: 40px;
+    margin-top: 2vh;
+}

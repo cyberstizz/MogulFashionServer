@@ -1,0 +1,64 @@
+$mainBlue: #3FA396;
+$mainRed: #E63C23;
+$complimentaryGray: #D9D9D9;
+
+.custom-arrow{
+    margin-top: 5vh;
+    margin-left: 5vw;
+}
+
+
+.searchBar{
+    width: 94vw;
+    height: 5vh;
+    border: solid 3px black;
+    margin-left: 2vw;
+}
+
+.entireProductCard{
+    display: flex;
+    flex-direction: column;
+    align-items: center;  // Center the child elements
+
+}
+
+.headerWrapper {
+    display: inline-flex;   // This will ensure the wrapper is only as wide as its widest child
+    flex-direction: column; // Stack children vertically
+    align-items: center;   // Center-align children
+}
+
+.productFont{
+    font-size: 30px;
+    color: blue;
+    align-self: center;
+}
+.headerFooter{
+    height: 5px; 
+    background-color: $mainRed; // Just to make it highly visible
+    width: 100%; 
+}
+
+
+
+
+.productImage{
+    width: 90%;
+    height: auto;
+    border: solid 4px black;
+}
+
+.headerFooterImage{
+    width: 90%;
+    height: 10px;
+    margin-top: 1.5vh; 
+    background-color: $mainBlue;
+    border-radius: 12px;
+}
+
+.productDescription{
+    width: 90%;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 40px;
+    word-wrap: normal;
+}

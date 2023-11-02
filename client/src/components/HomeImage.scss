@@ -1,0 +1,28 @@
+$mainBlue: #3FA396;
+$mainRed: #E63C23;
+$complimentaryGray: #D9D9D9;
+
+*{
+    overflow-x: hidden;
+    font-family: 'Architects Daughter', cursive;
+}
+
+.homeImageParent{
+    display: flex;
+    flex-direction: column;
+    margin-left: 2vw;
+    margin-top: 2vh;
+    width: 30vw;
+}
+
+.theImage{
+    border: solid 2px $mainBlue;
+    width: 120px; /* Set a fixed width */
+    height: 150px;
+}
+
+.imageTitle{
+    align-self: center;
+    color: $mainRed;
+    font-size: x-large;
+}

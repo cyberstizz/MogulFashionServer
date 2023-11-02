@@ -1,0 +1,64 @@
+$mainBlue: #3FA396;
+$mainRed: #E63C23;
+$complimentaryGray: #D9D9D9;
+
+*{
+    overflow-x: hidden;
+    overflow-y: hidden;
+    font-family: 'Architects Daughter', cursive;
+}
+
+.topSection{
+    height: 10vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    background-color: $mainBlue;
+}
+
+
+.hamburger {
+    width: 5vw;
+    height: 4vh;
+    background-color: black;
+}
+
+.mainButton{
+    margin-left: 5vw;
+    width: 30vw;
+    height: 6vh;
+    margin-top: 2vh;
+    border-radius: 25px;
+}
+
+.heroSection{
+    height: 35vh;
+    width: 100vw;
+    background-color: $mainBlue;;
+}
+
+
+.heroButton{
+    background: $mainRed;
+    height: 5vh;
+    width: 30vw;
+    border-radius: 15px;
+    margin-top: 25vh;
+    margin-left:15vw;
+}
+
+.HomeImages{
+    display: flex;
+    flex-direction: row;
+}
+
+.homeLogo{
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+
+.apparelVideo{
+    border-top: solid 2px $mainBlue;
+    border-bottom: solid 2px $mainBlue;
+
+}

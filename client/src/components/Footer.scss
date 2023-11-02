@@ -1,0 +1,32 @@
+$mainBlue: #3FA396;
+$mainRed: #E63C23;
+$complimentaryGray: #D9D9D9;
+
+*{
+    overflow-x: visible;
+    font-family: 'Architects Daughter', cursive;
+}
+
+.theFooter{
+    bottom: 0;
+    width: 100vw;
+    position: static;
+    background-color: #D0D0D0;
+    border: solid 2px #D0D0D0;
+}
+.footerHomeLogo{
+    width: 30vw;
+    margin-left: 34vw;
+    border: 4px solid rgb(72, 69, 69);
+    border-radius: 40px;
+    margin-top: 5vh;
+}
+
+.footerList{
+    color: black;
+    margin: 0 auto;
+    margin-bottom: 1vh;
+    font-size: 40px;
+    font-weight: 700;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
