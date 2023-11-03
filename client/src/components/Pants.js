@@ -3,6 +3,7 @@ import './Pants.scss';
 import { Link } from 'react-router-dom';
 import SubMenuComponent from './SubMenuComponent';
 import Loader from './Loader';
+import Axios from 'axios';
 
 
 
@@ -10,8 +11,24 @@ import Loader from './Loader';
 const Pants = () => {
 
     const [imagesLoaded, setImagesLoaded] = useState(false);
+    const [loadedImagesCount, setLoadedImagesCount] = useState(0);
+    const [AllPants, setAllPants] = useState([]);
 
-  const [loadedImagesCount, setLoadedImagesCount] = useState(0);
+
+    useEffect(() => {
+      const fetchData = async () => {
+          try {
+              const response = await Axios.get('http://localhost:4000/category/pants');
+              setAllPants(response.data);
+          } catch (error) {
+              console.error("Error fetching pants data: ", error);
+          }
+      };
+
+      fetchData();
+  }, []);
+
+
 
 const handleImageLoaded = () => {
   setLoadedImagesCount(prevCount => prevCount + 1);
@@ -37,9 +54,18 @@ useEffect(() => {
             </nav>
             
             <main className='submenuBody'>
-            <Link to="/products/jamaaca"><SubMenuComponent onImageLoad={handleImageLoaded} name='Jamaaca' path='./jamaacaJeans.jpeg' /></Link>
+            {AllPants.map(pants => (
+                    <Link key={pants._id} to={`/products/${pants.title}`}>
+                        <SubMenuComponent onImageLoad={handleImageLoaded} name={pants.title} path={pants.imagePath} />
+                    </Link>
+                ))}
+            
+            
+            {/* <Link to="/products/jamaaca"><SubMenuComponent onImageLoad={handleImageLoaded} name='Jamaaca' path='./jamaacaJeans.jpeg' /></Link>
             <Link to="/products/colorVienz"><SubMenuComponent onImageLoad={handleImageLoaded} name='ColorVienz' path='./colorVienzJeans.png' /></Link>
-            <Link to="/products/mogulPants"><SubMenuComponent onImageLoad={handleImageLoaded} name='MogulPants' path='./mogulPants.jpg' /></Link>
+            <Link to="/products/mogulPants"><SubMenuComponent onImageLoad={handleImageLoaded} name='MogulPants' path='./mogulPants.jpg' /></Link> */}
+           
+           
             </main>
            
         </React.Fragment>
