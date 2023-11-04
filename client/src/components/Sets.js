@@ -49,7 +49,7 @@ useEffect(() => {
             </nav>
             <main className='submenuBody'>
             {AllSets.map(set => (
-                    <Link key={set._id} to={`/products/${set.title}`}>
+                    <Link key={set._id} to={`/products/${set.category}/${set._id}`}>
                         <SubMenuComponent onImageLoad={handleImageLoaded} name={set.title} path={set.imagePath} />
                     </Link>
                 ))}   
