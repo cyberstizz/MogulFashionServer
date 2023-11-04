@@ -3,21 +3,36 @@ import './Skirts.scss';
 import { Link } from 'react-router-dom';
 import SubMenuComponent from "./SubMenuComponent";
 import Loader from "./Loader";
+import Axios from 'axios';
 
 
 
 const Skirts = () => {
 
     const [imagesLoaded, setImagesLoaded] = useState(false);
+    const [loadedImagesCount, setLoadedImagesCount] = useState(0);
+    const [AllSkirts, setAllSkirts] = useState([]);
 
-  const [loadedImagesCount, setLoadedImagesCount] = useState(0);
 
-const handleImageLoaded = () => {
+    useEffect(() => {
+      const fetchData = async () => {
+          try {
+              const response = await Axios.get('http://localhost:4000/category/skirts');
+              setAllSkirts(response.data);
+          } catch (error) {
+              console.error("Error fetching pants data: ", error);
+          }
+      };
+
+      fetchData();
+  }, []);
+
+    const handleImageLoaded = () => {
   setLoadedImagesCount(prevCount => prevCount + 1);
 };
 
 useEffect(() => {
-  if (loadedImagesCount === 3) {
+  if (loadedImagesCount === AllSkirts.length) {
     setImagesLoaded(true);
   }
 }, [loadedImagesCount]);
@@ -34,9 +49,12 @@ useEffect(() => {
                 </ul>
             </nav>
             <main className='submenuBody'>
-                <Link to="/products/theQueen"><SubMenuComponent onImageLoad={handleImageLoaded} name='The Queen' path='./theQueen.jpeg' /></Link>
-                <Link to="/products/theRoyalty"><SubMenuComponent onImageLoad={handleImageLoaded} name='the Royalty' path='./theRoyalty.jpeg' /></Link>
-                <Link to="/products/theRoyalty"><SubMenuComponent onImageLoad={handleImageLoaded} name='the Royalty' path='./theRoyalty.jpeg' /></Link>
+            {AllSkirts.map(skirt => (
+                    <Link key={skirt._id} to={`/products/${skirt.title}`}>
+                        <SubMenuComponent onImageLoad={handleImageLoaded} name={skirt.title} path={skirt.imagePath} />
+                    </Link>
+                ))}
+
             </main>
            
         </React.Fragment>

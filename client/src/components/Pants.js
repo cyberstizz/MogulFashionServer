@@ -35,7 +35,7 @@ const handleImageLoaded = () => {
 };
 
 useEffect(() => {
-  if (loadedImagesCount === 3) {
+  if (loadedImagesCount === AllPants.length) {
     setImagesLoaded(true);
   }
 }, [loadedImagesCount]);

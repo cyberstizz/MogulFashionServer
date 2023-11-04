@@ -3,23 +3,37 @@ import './Shirts.scss';
 import { Link } from 'react-router-dom';
 import SubMenuComponent from "./SubMenuComponent";
 import Loader from "./Loader";
+import Axios from 'axios';
 
 
 
 const Shirts = () => {
 
   const [imagesLoaded, setImagesLoaded] = useState(false);
-
   const [loadedImagesCount, setLoadedImagesCount] = useState(0);
+  const [AllShirts, setAllShirts] = useState([]);
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+        try {
+            const response = await Axios.get('http://localhost:4000/category/shirts');
+            setAllShirts(response.data);
+        } catch (error) {
+            console.error("Error fetching shirts data: ", error);
+        }
+    };
+
+    fetchData();
+}, []);
+
 
 const handleImageLoaded = () => {
   setLoadedImagesCount(prevCount => prevCount + 1);
 };
 
 useEffect(() => {
-    // in this case I will set images loaded as true after all
-    //seven images are loaded
-  if (loadedImagesCount === 7) {
+  if (loadedImagesCount === AllShirts.length) {
     setImagesLoaded(true);
   }
 }, [loadedImagesCount]);
@@ -35,15 +49,13 @@ useEffect(() => {
                 <Link to="/hoodies"><li className='submenuNavItem'>Hoodies</li></Link>
                 </ul>
             </nav>
-            <main className='shirtsubmenuBody'>
-                <Link to="/products/Gangsta"><SubMenuComponent onImageLoad={handleImageLoaded} name='Gangsta' path='/Gangsta.png' /></Link>
-                <Link to="/products/Here"><SubMenuComponent onImageLoad={handleImageLoaded} name="We're here" path='/Here.png' /></Link>
-                <Link to="/products/better"><SubMenuComponent onImageLoad={handleImageLoaded} name='Better' path='/better.png' /></Link>
-                <Link to="/products/creamPuff"><SubMenuComponent onImageLoad={handleImageLoaded} name='creamPuff' path='/creamPuff.png' /></Link>
-                <Link to="/products/facebookFollowers"><SubMenuComponent onImageLoad={handleImageLoaded} name='facebookFollowers' path='/facebookFollowers.png' /></Link>
-                <Link to="/products/mogulOne"><SubMenuComponent onImageLoad={handleImageLoaded} name='mogulOne' path='/mogulShirt.png' /></Link>      
-                <Link to="/products/mogulTwo"><SubMenuComponent onImageLoad={handleImageLoaded} name='mogulTwo' path='/mogulShirtTwo.png' /></Link>
-
+            <main className='submenuBody'>
+            {AllShirts.map(shirt => (
+                    <Link key={shirt._id} to={`/products/${shirt.title}`}>
+                        <SubMenuComponent onImageLoad={handleImageLoaded} name={shirt.title} path={shirt.imagePath} />
+                    </Link>
+                ))}
+                
             </main>
            
         </React.Fragment>
