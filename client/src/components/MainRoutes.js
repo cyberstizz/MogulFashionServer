@@ -26,7 +26,7 @@ function MainRoutes() {
         <Route path='/skirts' element={<Skirts />} />
         <Route path='/sets' element={<Sets />} />
         <Route path='/shirts' element={<Shirts />} />
-        <Route path='/products/:productId' element={<ProductPage />} />
+        <Route path='/products/:categoryId/:productId' element={<ProductPage />} />
         <Route path='/settingsMenu' element={<SettingsPopup />} />
         <Route path='/privacyPolicy' element={<PrivacyPolicy />} />
         <Route path='/about' element={<About />} />  

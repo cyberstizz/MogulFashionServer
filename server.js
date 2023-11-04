@@ -2,6 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const { MongoClient, ServerApiVersion } = require('mongodb');
+const { ObjectId } = require('mongodb');
+
 
 const app = express();
 
@@ -76,9 +78,25 @@ app.get('/category/:category', async (req, res) => {
 });
 
 // Single product by ID and category
-app.get('/:category/:id', async (req, res) => {
-    const product = await db.collection('newProducts').findOne({ _id: ObjectID(req.params.id), category: req.params.category });
-    res.json(product);
+app.get('/product/:category/:id', async (req, res) => {
+
+
+
+    try {
+        const product = await db.collection('newProducts').findOne({
+            _id: new ObjectId(req.params.id),
+            category: req.params.category
+        });
+        
+        if (product) {
+            res.json(product);
+        } else {
+            res.status(404).send('Product not found');
+        }
+    } catch (err) {
+        console.error(err); // This will print the error details to your server logs
+        res.status(500).send('Error retrieving product');
+    }
 });
 
 // Add product (Note: you shouldn't need the ':product' parameter in the path)

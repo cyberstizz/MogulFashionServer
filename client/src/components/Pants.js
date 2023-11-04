@@ -55,7 +55,7 @@ useEffect(() => {
             
             <main className='submenuBody'>
             {AllPants.map(pants => (
-                    <Link key={pants._id} to={`/products/${pants.title}`}>
+                    <Link key={pants._id} to={`/products/${pants.category}/${pants._id}`}>
                         <SubMenuComponent onImageLoad={handleImageLoaded} name={pants.title} path={pants.imagePath} />
                     </Link>
                 ))}

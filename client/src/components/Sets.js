@@ -3,6 +3,7 @@ import './Sets.scss';
 import { Link } from 'react-router-dom';
 import SubMenuComponent from "./SubMenuComponent";
 import Loader from "./Loader";
+import Axios from 'axios';
 
 
 const Sets = () => {
