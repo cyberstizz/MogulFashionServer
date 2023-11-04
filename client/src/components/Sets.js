@@ -8,15 +8,29 @@ import Loader from "./Loader";
 const Sets = () => {
 
     const [imagesLoaded, setImagesLoaded] = useState(false);
-
     const [loadedImagesCount, setLoadedImagesCount] = useState(0);
+    const [AllSets, setAllSets] = useState([]);
+
+    useEffect(() => {
+      const fetchData = async () => {
+          try {
+              const response = await Axios.get('http://localhost:4000/category/sets');
+              setAllSets(response.data);
+          } catch (error) {
+              console.error("Error fetching pants data: ", error);
+          }
+      };
+
+      fetchData();
+  }, []);
+
 
     const handleImageLoaded = () => {
   setLoadedImagesCount(prevCount => prevCount + 1);
 };
 
 useEffect(() => {
-  if (loadedImagesCount === 3) {
+  if (loadedImagesCount === AllSets.length) {
     setImagesLoaded(true);
   }
 }, [loadedImagesCount]);
@@ -33,9 +47,11 @@ useEffect(() => {
                 </ul>
             </nav>
             <main className='submenuBody'>
-                <Link to="/products/theGarterSet"><SubMenuComponent onImageLoad={handleImageLoaded} name='The Garter Set' path='./theGarterSet.png' /></Link>
-                <Link to="/products/theGarterSet"><SubMenuComponent onImageLoad={handleImageLoaded} name='The Garter Set' path='./theGarterSet.png' /></Link>
-                <Link to="/products/theGarterSet"><SubMenuComponent onImageLoad={handleImageLoaded} name='The Garter Set' path='./theGarterSet.png' /></Link>
+            {AllSets.map(set => (
+                    <Link key={set._id} to={`/products/${set.title}`}>
+                        <SubMenuComponent onImageLoad={handleImageLoaded} name={set.title} path={set.imagePath} />
+                    </Link>
+                ))}   
             </main>
            
         </React.Fragment>
