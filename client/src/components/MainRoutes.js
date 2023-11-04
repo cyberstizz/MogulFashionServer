@@ -13,6 +13,7 @@ import ProductPage from './ProductPage';
 import SettingsPopup from './SettingsPopup';
 import PrivacyPolicy from './PrivacyPolicy';
 import About from './About';
+import Control from './Control';
 
 function MainRoutes() {
 
@@ -29,7 +30,9 @@ function MainRoutes() {
         <Route path='/products/:categoryId/:productId' element={<ProductPage />} />
         <Route path='/settingsMenu' element={<SettingsPopup />} />
         <Route path='/privacyPolicy' element={<PrivacyPolicy />} />
-        <Route path='/about' element={<About />} />  
+        <Route path='/about' element={<About />} />
+        <Route path='/control' element={<Control />} />  
+
      </Routes>
   );
 }
