@@ -3,12 +3,27 @@ import './Sneakers.scss';
 import { Link } from 'react-router-dom';
 import SubMenuComponent from "./SubMenuComponent";
 import Loader from "./Loader";
+import Axios from 'axios';
 
 
 const Sneakers = () => {
     const [imagesLoaded, setImagesLoaded] = useState(false);
+    const [loadedImagesCount, setLoadedImagesCount] = useState(0);
+    const [AllSneakers, setAllSneakers] = useState([]);
 
-  const [loadedImagesCount, setLoadedImagesCount] = useState(0);
+
+    useEffect(() => {
+      const fetchData = async () => {
+          try {
+              const response = await Axios.get('http://localhost:4000/category/sneakers');
+              setAllSneakers(response.data);
+          } catch (error) {
+              console.error("Error fetching pants data: ", error);
+          }
+      };
+
+      fetchData();
+  }, []);
 
 const handleImageLoaded = () => {
   setLoadedImagesCount(prevCount => prevCount + 1);
@@ -33,9 +48,13 @@ useEffect(() => {
                 </ul>
             </nav>
             <main className='submenuBody'>
-            <Link to="/products/spades"><SubMenuComponent onImageLoad={handleImageLoaded} name='spades' path='./spades.jpeg' /></Link>
-            <Link to="/products/southOxford"><SubMenuComponent onImageLoad={handleImageLoaded} name='SouthOxford' path='./SouthOxford.jpg' /></Link>
-            <Link to="/products/maz"><SubMenuComponent onImageLoad={handleImageLoaded} name='maz' path='./maz.jpeg' /></Link>
+
+            {AllSneakers.map(sneaker => (
+                    <Link key={sneaker._id} to={`/products/${sneaker.title}`}>
+                        <SubMenuComponent onImageLoad={handleImageLoaded} name={sneaker.title} path={sneaker.imagePath} />
+                    </Link>
+                ))}
+
             </main>
            
         </React.Fragment>

@@ -59,12 +59,6 @@ useEffect(() => {
                         <SubMenuComponent onImageLoad={handleImageLoaded} name={pants.title} path={pants.imagePath} />
                     </Link>
                 ))}
-            
-            
-            {/* <Link to="/products/jamaaca"><SubMenuComponent onImageLoad={handleImageLoaded} name='Jamaaca' path='./jamaacaJeans.jpeg' /></Link>
-            <Link to="/products/colorVienz"><SubMenuComponent onImageLoad={handleImageLoaded} name='ColorVienz' path='./colorVienzJeans.png' /></Link>
-            <Link to="/products/mogulPants"><SubMenuComponent onImageLoad={handleImageLoaded} name='MogulPants' path='./mogulPants.jpg' /></Link> */}
-           
            
             </main>
            
