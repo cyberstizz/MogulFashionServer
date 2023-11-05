@@ -15,6 +15,7 @@ import PrivacyPolicy from './PrivacyPolicy';
 import About from './About';
 import Control from './Control';
 import EditComponent from './EditComponent';
+import NewProduct from './NewProduct';
 
 function MainRoutes() {
 
@@ -34,6 +35,7 @@ function MainRoutes() {
         <Route path='/privacyPolicy' element={<PrivacyPolicy />} />
         <Route path='/about' element={<About />} />
         <Route path='/control' element={<Control />} />  
+        <Route path='/newProduct' element={<NewProduct />} />  
 
      </Routes>
   );
