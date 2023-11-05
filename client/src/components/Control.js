@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
 import './Control.scss';
-import { Link } from 'react-router-dom';
 import Loader from "./Loader";
 import Axios from 'axios';
 import ControlComponent from "./ControlComponent";
@@ -52,7 +51,7 @@ useEffect(() => {
             <main className='submenuBody'>
                 <button className="newProductButton">Create new product</button>
             {AllProducts.map(product => (
-                        <ControlComponent productId={product._id} onDelete={() => handleDelete(product._id)} onImageLoad={handleImageLoaded} name={product.title} path={product.imagePath} />
+                        <ControlComponent productCategory={product.category} key={product._id} productId={product._id} onDelete={() => handleDelete(product._id)} onImageLoad={handleImageLoaded} name={product.title} path={product.imagePath} />
                 ))}
 
             </main>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
-import { Axios } from 'axios';
+import Axios from 'axios';
 
 const EditComponent = () => {
   const { productId } = useParams();
@@ -18,8 +18,8 @@ const EditComponent = () => {
   useEffect(() => {
   
     const fetchProductData = async () => {
-      const response = await Axios.put(`http://localhost:4000/product/${productCategory}/${productId}`);
-      const data = await response.json();
+      const response = await Axios.get(`http://localhost:4000/product/${productCategory}/${productId}`);
+      const data = await response.data;
       setProduct(data);
     };
 
@@ -33,22 +33,31 @@ const EditComponent = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Send the update to the server
-    const response = await fetch(`http://localhost:4000/update/${productId}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(product),
-    });
-
-    const result = await response.json();
-    if (result) {
-      // Handle success - perhaps redirect to the product details page or refresh the data
-      navigate('/');
-    } else {
-      // Handle error
-      console.error('Failed to update the product');
+    
+    // Remove _id from product before sending
+    const { _id, ...updateData } = product;
+    
+    try {
+      const response = await fetch(`http://localhost:4000/update/${productId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updateData),
+      });
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+  
+      const result = await response.json();
+      if (result) {
+        navigate('/');
+      } else {
+        console.error('Failed to update the product');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
     }
   };
 
