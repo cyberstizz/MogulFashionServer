@@ -14,12 +14,14 @@ import SettingsPopup from './SettingsPopup';
 import PrivacyPolicy from './PrivacyPolicy';
 import About from './About';
 import Control from './Control';
+import EditComponent from './EditComponent';
 
 function MainRoutes() {
 
   return (
       <Routes>
         <Route path='/' element={<Home />} />
+        <Route path='/edit/:productCategory/:productId' element={<EditComponent />} />
         <Route path='/sneakers' element={<Sneakers />} />
         <Route path='/pants' element={<Pants />} />
         <Route path='/hoodies' element={<Hoodies />} />

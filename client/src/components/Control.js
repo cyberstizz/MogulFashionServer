@@ -14,6 +14,14 @@ const Control = () => {
     const [AllProducts, setAllProducts] = useState([]);
 
 
+    const handleDelete = (productId) => {
+        Axios.delete(`http://localhost:4000/delete/${productId}`)
+
+        const updatedProducts = AllProducts.filter(product => product._id !== productId);
+        setAllProducts(updatedProducts);
+    }
+
+
     useEffect(() => {
       const fetchData = async () => {
           try {
@@ -44,9 +52,7 @@ useEffect(() => {
             <main className='submenuBody'>
                 <button className="newProductButton">Create new product</button>
             {AllProducts.map(product => (
-                    <Link key={product._id} to={`/products/${product.category}/${product._id}`}>
-                        <ControlComponent onImageLoad={handleImageLoaded} name={product.title} path={product.imagePath} />
-                    </Link>
+                        <ControlComponent productId={product._id} onDelete={() => handleDelete(product._id)} onImageLoad={handleImageLoaded} name={product.title} path={product.imagePath} />
                 ))}
 
             </main>

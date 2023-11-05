@@ -107,13 +107,15 @@ app.post('/add', async (req, res) => {
 
 // Delete product by ID
 app.delete('/delete/:id', async (req, res) => {
-    const result = await db.collection('newProducts').deleteOne({ _id: ObjectID(req.params.id) });
+    console.log('I am delete and I have been called')
+    const result = await db.collection('newProducts').deleteOne({ _id: new ObjectId(req.params.id) });
     res.json(result);
 });
 
 // Edit product by ID
 app.put('/update/:id', async (req, res) => {
-    const result = await db.collection('newProducts').updateOne({ _id: ObjectID(req.params.id) }, { $set: req.body });
+    console.log('I am the update component and I have been called')
+    const result = await db.collection('newProducts').updateOne({ _id: new ObjectId(req.params.id) }, { $set: req.body });
     res.json(result);
 });
 
