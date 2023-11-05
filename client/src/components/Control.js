@@ -42,6 +42,7 @@ useEffect(() => {
             {!imagesLoaded && <Loader />}
 
             <main className='submenuBody'>
+                <button className="newProductButton">Create new product</button>
             {AllProducts.map(product => (
                     <Link key={product._id} to={`/products/${product.category}/${product._id}`}>
                         <ControlComponent onImageLoad={handleImageLoaded} name={product.title} path={product.imagePath} />
