@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import './newProduct.scss';
 import Axios from 'axios';
 import AWS from 'aws-sdk';
-import 'dotenv';
 
 const NewProduct = () => {
   const navigate = useNavigate();
@@ -14,7 +13,7 @@ const NewProduct = () => {
     headline: '',
     description: '',
   });
-  
+
   const [file, setFile] = useState(null);
 
   const handleInputChange = (e) => {
@@ -27,32 +26,38 @@ const NewProduct = () => {
   };
 
   const uploadImageToS3 = async (file) => {
-    // Initialize the AWS S3 SDK
+    console.log('Initializing S3 upload process...'); // Log initialization
+  
     const s3 = new AWS.S3({
-      // Provide your S3 credentials
       accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
       secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY,
       region: process.env.REACT_APP_AWS_REGION,
     });
-
+  
+    console.log('S3 instance created.'); // Log S3 instance creation
+  
     const params = {
       Bucket: process.env.REACT_APP_S3_BUCKET,
-      Key: `product-images/${file.name}`,
+      Key: `product-images/${Date.now()}_${file.name}`, // Added timestamp for unique file names
       Body: file,
       ContentType: file.type,
-      ACL: 'public-read', // This will make the file publicly readable (be cautious with this permission)
     };
-
+  
+    console.log('Params set for S3 upload:', params); // Log the parameters for the upload
+  
     return new Promise((resolve, reject) => {
-      s3.upload(params, function (err, data) {
+      s3.upload(params, (err, data) => {
         if (err) {
+          console.error('S3 upload error:', err); // Log any S3 upload errors
           reject(err);
         } else {
-          resolve(data.Location); // The file URL will be returned on successful upload
+          console.log('S3 upload successful:', data); // Log the success response from S3
+          resolve(data.Location); // Return the file URL
         }
       });
     });
   };
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -63,18 +68,20 @@ const NewProduct = () => {
     }
 
     try {
-      const imageUrl = await uploadImageToS3(file);
-
-      // Add the image URL to the product data
+      const imagePath = await uploadImageToS3(file);
       const { _id, ...updateData } = product;
-      const productDataWithImage = { ...updateData, imageUrl };
+      const productDataWithImage = { ...updateData, imagePath };
 
-      const response = await Axios.post(`http://localhost:4000/add`, productDataWithImage);
-  
+      const response = await Axios.post('http://localhost:4000/add', productDataWithImage, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
       if (response.status !== 200) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-  
+
       if (response.data) {
         navigate('/');
       } else {
@@ -86,9 +93,52 @@ const NewProduct = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      {/* ... other fields ... */}
-      
+    <form onSubmit={handleSubmit} className="newProductForm">
+      <label>
+        Title:
+        <input
+          type="text"
+          name="title"
+          value={product.title}
+          onChange={handleInputChange}
+        />
+      </label>
+
+      <fieldset>
+        <legend>Category</legend>
+        {['pants', 'sneakers', 'hoodies', 'dresses', 'skirts', 'sets', 'shirts'].map((category) => (
+          <label key={category}>
+            <input
+              type="radio"
+              name="category"
+              value={category}
+              checked={product.category === category}
+              onChange={handleInputChange}
+            />
+            {category}
+          </label>
+        ))}
+      </fieldset>
+
+      <label>
+        Headline:
+        <input
+          type="text"
+          name="headline"
+          value={product.headline}
+          onChange={handleInputChange}
+        />
+      </label>
+
+      <label>
+        Description:
+        <textarea
+          name="description"
+          value={product.description}
+          onChange={handleInputChange}
+        />
+      </label>
+
       <label>
         Image:
         <input
@@ -96,8 +146,8 @@ const NewProduct = () => {
           onChange={handleFileChange}
         />
       </label>
-      
-      <button type="submit">Create Product</button>
+
+      <button type="submit">Create New Product</button>
     </form>
   );
 };
