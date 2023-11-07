@@ -15,11 +15,29 @@ const Control = () => {
 
 
     const handleDelete = (productId) => {
-        Axios.delete(`http://localhost:4000/delete/${productId}`)
-
-        const updatedProducts = AllProducts.filter(product => product._id !== productId);
-        setAllProducts(updatedProducts);
-    }
+        // Prompt the user to confirm the deletion
+        const userConfirmed = window.confirm("Are you sure you want to delete this item?");
+      
+        // Check if the user clicked "OK"
+        if (userConfirmed) {
+          Axios.delete(`http://localhost:4000/delete/${productId}`)
+            .then(response => {
+              // Handle the response if needed
+              console.log(response.data);
+      
+              // Filter out the deleted product from the state
+              const updatedProducts = AllProducts.filter(product => product._id !== productId);
+              setAllProducts(updatedProducts);
+            })
+            .catch(error => {
+              // Handle any errors here
+              console.error("There was an error deleting the product", error);
+            });
+        } else {
+          // User clicked "Cancel", don't delete
+          console.log("Deletion was canceled.");
+        }
+      };
 
 
     useEffect(() => {
