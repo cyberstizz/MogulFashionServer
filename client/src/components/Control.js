@@ -13,6 +13,9 @@ const Control = () => {
     const [loadedImagesCount, setLoadedImagesCount] = useState(0);
     const [AllProducts, setAllProducts] = useState([]);
 
+    const apiUrl = process.env.REACT_APP_API_URL;
+
+
 
     const handleDelete = (productId) => {
         // Prompt the user to confirm the deletion
@@ -20,7 +23,7 @@ const Control = () => {
       
         // Check if the user clicked "OK"
         if (userConfirmed) {
-          Axios.delete(`http://localhost:4000/delete/${productId}`)
+          Axios.delete(`${apiUrl}/delete/${productId}`)
             .then(response => {
               // Handle the response if needed
               console.log(response.data);
@@ -43,7 +46,7 @@ const Control = () => {
     useEffect(() => {
       const fetchData = async () => {
           try {
-              const response = await Axios.get('http://localhost:4000/products');
+              const response = await Axios.get(`${apiUrl}/products`);
               setAllProducts(response.data);
           } catch (error) {
               console.error("Error fetching pants data: ", error);

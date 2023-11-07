@@ -14,11 +14,13 @@ const Hoodies = () => {
     const [loadedImagesCount, setLoadedImagesCount] = useState(0);
     const [AllHoodies, setAllHoodies] = useState([]);
 
+    const apiUrl = process.env.REACT_APP_API_URL;
+
 
     useEffect(() => {
       const fetchData = async () => {
           try {
-              const response = await Axios.get('http://localhost:4000/category/hoodies');
+              const response = await Axios.get(`${apiUrl}/category/hoodies`);
               setAllHoodies(response.data);
           } catch (error) {
               console.error("Error fetching pants data: ", error);

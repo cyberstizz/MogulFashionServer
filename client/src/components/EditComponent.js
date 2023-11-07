@@ -8,6 +8,9 @@ const EditComponent = () => {
   const { productCategory } = useParams();
   const navigate = useNavigate();
 
+  const apiUrl = process.env.REACT_APP_API_URL;
+
+
   const [product, setProduct] = useState({
     title: '',
     category: '',
@@ -18,7 +21,7 @@ const EditComponent = () => {
   useEffect(() => {
   
     const fetchProductData = async () => {
-      const response = await Axios.get(`http://localhost:4000/product/${productCategory}/${productId}`);
+      const response = await Axios.get(`${apiUrl}/product/${productCategory}/${productId}`);
       const data = await response.data;
       setProduct(data);
     };
@@ -38,7 +41,7 @@ const EditComponent = () => {
     const { _id, ...updateData } = product;
     
     try {
-      const response = await fetch(`http://localhost:4000/update/${productId}`, {
+      const response = await fetch(`${apiUrl}/update/${productId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

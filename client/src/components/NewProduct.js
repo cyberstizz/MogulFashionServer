@@ -7,6 +7,8 @@ import AWS from 'aws-sdk';
 const NewProduct = () => {
   const navigate = useNavigate();
 
+  const apiUrl = process.env.REACT_APP_API_URL;
+
   const [product, setProduct] = useState({
     title: '',
     category: '',
@@ -72,7 +74,7 @@ const NewProduct = () => {
       const { _id, ...updateData } = product;
       const productDataWithImage = { ...updateData, imagePath };
 
-      const response = await Axios.post('http://localhost:4000/add', productDataWithImage, {
+      const response = await Axios.post(`${apiUrl}/add`, productDataWithImage, {
         headers: {
           'Content-Type': 'application/json',
         },
