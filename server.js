@@ -39,19 +39,6 @@ async function connectToDatabase() {
 // Connect to the database when the app starts
 connectToDatabase();
 
-if (process.env.NODE_ENV === 'production') {
-    // Express will serve up production assets
-    app.use(express.static('client/build'));
-  
-    // Express serve up index.html file if it doesn't recognize route
-    const path = require('path');
-    app.get('*', (req, res) => {
-      res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-    });
-  }
-
-
-
 
 
 app.get('/newProducts', (req, res) => {
@@ -131,6 +118,18 @@ app.put('/update/:id', async (req, res) => {
     const result = await db.collection('newProducts').updateOne({ _id: new ObjectId(req.params.id) }, { $set: req.body });
     res.json(result);
 });
+
+
+if (process.env.NODE_ENV === 'production') {
+    // Express will serve up production assets
+    app.use(express.static('client/build'));
+  
+    const path = require('path');
+    app.get('*', (req, res) => {
+      res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    });
+  }
+
 
 const port = process.env.PORT || 4000;
 
