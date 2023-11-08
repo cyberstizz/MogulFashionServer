@@ -7,8 +7,11 @@ import AWS from 'aws-sdk';
 const NewProduct = () => {
   const navigate = useNavigate();
 
-  const apiUrl = process.env.REACT_APP_API_URL;
+  const apiUrl = process.env.NODE_ENV === 'production'
+  ? 'https://mogulfashion-65ec42dc2783.herokuapp.com/'
+  : 'http://localhost:4000';
 
+  
   const [product, setProduct] = useState({
     title: '',
     category: '',

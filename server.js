@@ -7,8 +7,6 @@ const { ObjectId } = require('mongodb');
 
 const app = express();
 
-const port = process.env.PORT || 4000;
-
 app.use(cors());
 app.use(bodyParser.json());
 
@@ -134,6 +132,7 @@ app.put('/update/:id', async (req, res) => {
     res.json(result);
 });
 
+const port = process.env.PORT || 4000;
 
 
 app.listen(port, () => {
