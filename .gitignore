@@ -1,5 +1,5 @@
 # Dependencies
-/client/node_modules/.cache/
+client/node_modules/.cache/
 
 
 # Production build folder
