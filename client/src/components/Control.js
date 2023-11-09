@@ -21,10 +21,10 @@ const Control = () => {
 
     const handleDelete = (productId) => {
         // Prompt the user to confirm the deletion
-        const userConfirmed = window.confirm("Are you sure you want to delete this item?");
-      
+
         // Check if the user clicked "OK"
-        if (userConfirmed) {
+          console.log(`Attempting to delete product with ID: ${productId}`);
+
           Axios.delete(`${apiUrl}/delete/${productId}`)
             .then(response => {
               // Handle the response if needed
@@ -38,10 +38,7 @@ const Control = () => {
               // Handle any errors here
               console.error("There was an error deleting the product", error);
             });
-        } else {
-          // User clicked "Cancel", don't delete
-          console.log("Deletion was canceled.");
-        }
+       
       };
 
 
