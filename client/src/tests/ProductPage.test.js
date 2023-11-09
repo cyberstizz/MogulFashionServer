@@ -7,6 +7,11 @@ const moxios = require('moxios');
 const { StaticRouter } = require('react-router-dom');
 const ProductPage = require('./ProductPage');
 
+const { configure } = require('enzyme');
+const Adapter = require('enzyme-adapter-react-16');
+
+configure({ adapter: new Adapter() });
+
 chai.use(chaiEnzyme()); // This line tells Chai to use chai-enzyme
 
 describe('<ProductPage />', () => {
