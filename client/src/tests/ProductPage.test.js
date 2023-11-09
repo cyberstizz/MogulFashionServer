@@ -1,15 +1,15 @@
-const React = require('react');
-const { mount } = require('enzyme');
-const { expect } = require('chai');
-const chai = require('chai');
-const chaiEnzyme = require('chai-enzyme');
-const sinon = require('sinon');
-const moxios = require('moxios');
-const { StaticRouter } = require('react-router-dom');
-const ProductPage = require('../components/ProductPage');
+import React from 'react';
+import { mount } from 'enzyme';
+import { expect } from 'chai';
+import  chai from 'chai';
+import chaiEnzyme from 'chai-enzyme';
+import sinon from 'sinon';
+import moxios from 'moxios';
+import { StaticRouter } from 'react-router-dom';
+import  ProductPage from'../components/ProductPage';
 
-const { configure } = require('enzyme');
-const Adapter = require('enzyme-adapter-react-16');
+import { configure } from 'enzyme';
+import Adapter from'enzyme-adapter-react-16';
 
 configure({ adapter: new Adapter() });
 
