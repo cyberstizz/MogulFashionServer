@@ -14,7 +14,7 @@ const Skirts = () => {
     const [AllSkirts, setAllSkirts] = useState([]);
 
     const apiUrl = process.env.NODE_ENV === 'production'
-    ? 'https://mogulfashion-65ec42dc2783.herokuapp.com/'
+    ? 'https://mogulfashion-65ec42dc2783.herokuapp.com'
     : 'http://localhost:4000';
 
 
