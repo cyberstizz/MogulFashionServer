@@ -65,6 +65,8 @@
     "chai": "^4.3.10",
     "enzyme": "^3.11.0",
     "fetch-mock": "^9.11.0",
+    "jsdom": "^22.1.0",
+    "jsdom-global": "^3.0.2",
     "mocha": "^10.2.0",
     "moxios": "^0.4.0",
     "null-loader": "^4.0.1",
