@@ -38,7 +38,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "cross-env NODE_ENV=test mocha --require @babel/register --require jsdom-global/register --require ignore-styles --require /src/tests src/**/*.test.js",
+    "test": "cross-env NODE_ENV=test mocha --require @babel/register --require jsdom-global/register --require ignore-styles src/**/*.test.js",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -61,6 +61,7 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@babel/preset-react": "^7.23.3",
     "@babel/register": "^7.22.15",
     "@testing-library/react": "^14.1.0",
     "chai": "^4.3.10",
