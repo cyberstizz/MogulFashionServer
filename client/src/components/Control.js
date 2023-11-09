@@ -47,13 +47,19 @@ const Control = () => {
 
     useEffect(() => {
       const fetchData = async () => {
-          try {
-              const response = await Axios.get(`${apiUrl}/products`);
-              setAllProducts(response.data);
-          } catch (error) {
-              console.error("Error fetching pants data: ", error);
-          }
-      };
+        try {
+            const response = await Axios.get(`${apiUrl}/products`);
+            if (Array.isArray(response.data)) {
+                setAllProducts(response.data);
+            } else {
+                // Handle case where data isn't an array
+                console.error('Data fetched is not an array:', response.data);
+                setAllProducts([]); // Set to an empty array to prevent .map error
+            }
+        } catch (error) {
+            console.error("Error fetching products data: ", error);
+        }
+    };
 
       fetchData();
   }, []);
