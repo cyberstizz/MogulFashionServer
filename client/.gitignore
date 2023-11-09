@@ -1,5 +1,5 @@
 # Dependencies
-client/node_modules/.cache
+node_modules/
 
 # Misc
 .DS_Store
