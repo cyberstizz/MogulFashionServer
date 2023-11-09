@@ -1,11 +1,12 @@
 const React = require('react');
 const { mount } = require('enzyme');
 const { expect } = require('chai');
+const chai = require('chai');
 const chaiEnzyme = require('chai-enzyme');
 const sinon = require('sinon');
 const moxios = require('moxios');
 const { StaticRouter } = require('react-router-dom');
-const ProductPage = require('./ProductPage');
+const ProductPage = require('../components/ProductPage');
 
 const { configure } = require('enzyme');
 const Adapter = require('enzyme-adapter-react-16');

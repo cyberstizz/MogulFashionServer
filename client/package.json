@@ -59,14 +59,23 @@
       "last 1 safari version"
     ]
   },
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
+    ],
+    "plugins": []
+  },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/preset-react": "^7.23.3",
     "@babel/register": "^7.22.15",
     "@testing-library/react": "^14.1.0",
     "chai": "^4.3.10",
+    "chai-enzyme": "^1.0.0-beta.1",
     "cross-env": "^7.0.3",
     "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.7",
     "fetch-mock": "^9.11.0",
     "ignore-styles": "^5.0.1",
     "jsdom": "^22.1.0",
