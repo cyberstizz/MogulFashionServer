@@ -55,7 +55,7 @@ const ProductPage = () => {
                 </div>
                 <section className="headlineText">{headline}</section>
                 <div className="headerWrapper">
-                    <img onLoad={handleImageLoaded} className="productImage" src={product.imagePath} alt={`a ${product.title}`} />
+                    <img onLoad={handleImageLoaded} className="productImage" src={imagePath} alt={`a ${product.title}`} />
                     <div className="headerFooterImage"></div>
                 </div>
 
