@@ -12,10 +12,14 @@ const Sets = () => {
     const [loadedImagesCount, setLoadedImagesCount] = useState(0);
     const [AllSets, setAllSets] = useState([]);
 
+    const apiUrl = process.env.NODE_ENV === 'production'
+    ? 'https://mogulfashion-65ec42dc2783.herokuapp.com/'
+    : 'http://localhost:4000';
+
     useEffect(() => {
       const fetchData = async () => {
           try {
-              const response = await Axios.get('http://localhost:4000/category/sets');
+              const response = await Axios.get(`${apiUrl}/category/sets`);
               setAllSets(response.data);
           } catch (error) {
               console.error("Error fetching pants data: ", error);

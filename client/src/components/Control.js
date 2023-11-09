@@ -13,7 +13,9 @@ const Control = () => {
     const [loadedImagesCount, setLoadedImagesCount] = useState(0);
     const [AllProducts, setAllProducts] = useState([]);
 
-    const apiUrl = process.env.REACT_APP_API_URL;
+    const apiUrl = process.env.NODE_ENV === 'production'
+    ? 'https://mogulfashion-65ec42dc2783.herokuapp.com/'
+    : 'http://localhost:4000';
 
 
 
