@@ -11,9 +11,13 @@ const ProductPage = () => {
     const [product, setProduct] = useState(null);
     const [imagesLoaded, setImagesLoaded] = useState(false);
 
+    const apiUrl = process.env.NODE_ENV === 'production'
+    ? 'https://mogulfashion-65ec42dc2783.herokuapp.com'
+    : 'http://localhost:4000';
+
     const fetchProductData = async () => {
         try {
-            const response = await Axios.get(`http://localhost:4000/product/${categoryId}/${productId}`);
+            const response = await Axios.get(`${apiUrl}/product/${categoryId}/${productId}`);
             setProduct(response.data);
         } catch (error) {
             console.error("There was an error fetching the product data:", error);
