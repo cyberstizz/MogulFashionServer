@@ -38,7 +38,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "cross-env NODE_ENV=test mocha",
+    "test": "cross-env NODE_ENV=test mocha --require @babel/register --require jsdom-global/register --require ignore-styles src/**/*.test.js",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
