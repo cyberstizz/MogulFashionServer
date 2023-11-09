@@ -7,7 +7,6 @@ import sinon from 'sinon';
 import moxios from 'moxios';
 import { StaticRouter } from 'react-router-dom';
 import  ProductPage from'../components/ProductPage';
-
 import { configure } from 'enzyme';
 import Adapter from'enzyme-adapter-react-16';
 
