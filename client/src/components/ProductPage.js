@@ -2,18 +2,29 @@ import React, { useEffect, useState } from "react";
 import './ProductPage.scss';
 import { useNavigate, useParams } from 'react-router-dom';
 import Loader from "./Loader";
-import Axios from 'axios';
+import Axios, { all } from 'axios';
 
 const ProductPage = () => {
     const navigate = useNavigate();
     const { categoryId, productId } = useParams();
-
+    const [allProducts, setAllProducts] = useState();
     const [product, setProduct] = useState(null);
     const [imagesLoaded, setImagesLoaded] = useState(false);
 
     const apiUrl = process.env.NODE_ENV === 'production'
     ? 'https://mogulfashion-65ec42dc2783.herokuapp.com'
     : 'http://localhost:4000';
+
+    const getAllProducts = async () => {
+        
+        let theCategory = categoryId;
+        try {
+            const response = await Axios.get(`${apiUrl}/category/${theCategory}`);
+            setAllProducts(response.data);
+        } catch{
+            console.error("There was an error fetching the product data:", error);
+        }
+    }
 
     const fetchProductData = async () => {
         try {
@@ -25,8 +36,13 @@ const ProductPage = () => {
     };
 
     useEffect(() => {
+        getAllProducts();
+    }, []);
+
+    useEffect(() => {
         fetchProductData();
-    }, [categoryId, productId]);
+        getAllProducts();
+    }, [categoryId, productId, product]);
 
     const handleBackClick = () => {
         navigate(-1);
@@ -35,6 +51,30 @@ const ProductPage = () => {
     const handleImageLoaded = () => {
         setImagesLoaded(true);
     };
+
+    const toggleForward = () => {
+        //first determine the index of the current item
+        //in context of the allproducts array
+        let theIndex = allProducts.indexOf(product)
+
+        //if the index of the current
+        //product is at the end of the list(array.length)
+        if(theIndex + 1 === allProducts.length){
+            setProduct(allProducts[0])
+             //set the product to be equal to the first item using the 
+            //usestate
+        }else {
+             //otherwise set the current item to be the current
+        //index ++
+            setProduct(allProducts[theIndex + 1])
+        }
+    }
+
+    const toggleBackward = () => {
+        
+    }
+
+
 
     if (!product) {
         return <Loader />;
