@@ -28,6 +28,10 @@ $complimentaryGray: #D9D9D9;
     align-items: center;   // Center-align children
 }
 
+.headlineText {
+text-align: center;
+}
+
 .productFont{
     font-size: 30px;
     color: blue;
@@ -39,7 +43,14 @@ $complimentaryGray: #D9D9D9;
     width: 100%; 
 }
 
+.theArrows{
+    display: flex;
+    flex-direction: row;
+    height: 10vh;
+    color: #3FA396;
+    font-size: 48px; /* Adjust the size */
 
+}
 
 
 .productImage{

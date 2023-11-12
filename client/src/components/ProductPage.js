@@ -61,7 +61,7 @@ const ProductPage = () => {
 
         //if the index of the current
         //product is at the end of the list(array.length)
-        if(theIndex + 1 === allProducts.length){
+        if(theIndex + 1 === allProducts.length || theIndex === -1){
             setProduct(allProducts[0])
              //set the product to be equal to the first item using the 
             //usestate
@@ -79,7 +79,7 @@ const ProductPage = () => {
 
         //if the index of the current
         //product is at the end of the list(array.length)
-        if(theIndex  === 0){
+        if(theIndex  === 0 || theIndex === -1){
             setProduct(allProducts[allProducts.length - 1])
              //set the product to be equal to the first item using the 
             //usestate
@@ -111,8 +111,11 @@ const ProductPage = () => {
                 </div>
                 <section className="headlineText">{headline}</section>
                 <div className="headerWrapper">
-                    <button onClick={toggleBackward}>toggle back</button>
-                    <button onClick={toggleForward}>toggle forward</button>
+                    <div className="theArrows">
+                    <div style={{height: '8vh', marginRight: '5vw'}} onClick={toggleBackward}>&#10594;</div>
+                    <div style={{height: '8vh', width: '5vw', marginLeft: '5vw'}} onClick={toggleForward}>&#10596;</div>
+                    </div>
+
                     <img onLoad={handleImageLoaded} className="productImage" src={imagePath} alt={`a ${product.title}`} />
                     <div className="headerFooterImage"></div>
                 </div>
