@@ -21,7 +21,8 @@ const ProductPage = () => {
         try {
             const response = await Axios.get(`${apiUrl}/category/${theCategory}`);
             setAllProducts(response.data);
-        } catch{
+            console.log(allProducts)
+        } catch (error){
             console.error("There was an error fetching the product data:", error);
         }
     }
@@ -37,12 +38,11 @@ const ProductPage = () => {
 
     useEffect(() => {
         getAllProducts();
+        fetchProductData();
     }, []);
 
     useEffect(() => {
-        fetchProductData();
-        getAllProducts();
-    }, [categoryId, productId, product]);
+    }, [product]);
 
     const handleBackClick = () => {
         navigate(-1);
@@ -71,7 +71,21 @@ const ProductPage = () => {
     }
 
     const toggleBackward = () => {
-        
+        //first determine the index of the current item
+        //in context of the allproducts array
+        let theIndex = allProducts.indexOf(product)
+
+        //if the index of the current
+        //product is at the end of the list(array.length)
+        if(theIndex  === 0){
+            setProduct(allProducts[allProducts.length - 1])
+             //set the product to be equal to the first item using the 
+            //usestate
+        }else {
+             //otherwise set the current item to be the current
+        //index ++
+            setProduct(allProducts[theIndex - 1])
+        }
     }
 
 
@@ -95,6 +109,8 @@ const ProductPage = () => {
                 </div>
                 <section className="headlineText">{headline}</section>
                 <div className="headerWrapper">
+                    <button onClick={toggleBackward}>toggle back</button>
+                    <button onClick={toggleForward}>toggle forward</button>
                     <img onLoad={handleImageLoaded} className="productImage" src={imagePath} alt={`a ${product.title}`} />
                     <div className="headerFooterImage"></div>
                 </div>
