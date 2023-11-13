@@ -16,6 +16,7 @@ import About from './About';
 import Control from './Control';
 import EditComponent from './EditComponent';
 import NewProduct from './NewProduct';
+import ResetPassword from './ResetPassword';
 
 function MainRoutes() {
 
@@ -24,6 +25,7 @@ function MainRoutes() {
         <Route path='/' element={<Home />} />
         <Route path='/edit/:productCategory/:productId' element={<EditComponent />} />
         <Route path='/sneakers' element={<Sneakers />} />
+        <Route path='/ResetPassword' element={<ResetPassword />} />
         <Route path='/pants' element={<Pants />} />
         <Route path='/hoodies' element={<Hoodies />} />
         <Route path='/dresses' element={<Dresses />} />

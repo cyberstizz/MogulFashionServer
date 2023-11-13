@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-
+import './EditComponent.scss'
 import Axios from 'axios';
 
 const EditComponent = () => {
@@ -66,6 +66,7 @@ const EditComponent = () => {
   };
 
   return (
+    <main className="fullEditPage">
     <form onSubmit={handleSubmit}>
       <label>
         Title:
@@ -87,6 +88,7 @@ const EditComponent = () => {
               value={category}
               checked={product.category === category}
               onChange={handleInputChange}
+              style={{marginTop: "20"}}
             />
             {category}
           </label>
@@ -100,6 +102,7 @@ const EditComponent = () => {
           name="headline"
           value={product.headline}
           onChange={handleInputChange}
+          style={{marginTop: "20"}}
         />
       </label>
 
@@ -109,11 +112,16 @@ const EditComponent = () => {
           name="description"
           value={product.description}
           onChange={handleInputChange}
+          style={{marginTop: "20"}}
         />
       </label>
 
-      <button type="submit">Edit Product</button>
+      <button
+        style={{color: "green"}}
+        type="submit">Edit Product
+      </button>
     </form>
+    </main>
   );
 };
 
