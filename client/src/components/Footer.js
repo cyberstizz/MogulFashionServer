@@ -1,9 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Footer.scss';
 import { Link } from 'react-router-dom';
+import PasswordPrompt from './PasswordPrompt';
 
 const Footer = () => {
+
+    const [isPromptOpen, setIsPromptOpen] = useState(false)
+
+const promptFunction = () => {
+    setIsPromptOpen(true);
+}
+
+
+
     return(
+        <React.Fragment>
+        {isPromptOpen && <PasswordPrompt />}
         <footer className='theFooter'>
 
 <Link to='/'><img style={{ textDecoration: 'none', color: 'inherit', overflow: 'hidden' }} src='/MogulLogo.png' alt='the mogo logo' className='footerHomeLogo'></img></Link>
@@ -23,7 +35,7 @@ const Footer = () => {
                 <Link to="/sets" style={{ textDecoration: 'none'}}><li className='footerList'>Sets</li></Link>
                 <Link to="/about" style={{ textDecoration: 'none'}}><li className='footerList'>About</li></Link>
                 <Link to="/privacyPolicy" style={{ textDecoration: 'none'}}><li className='footerList'>Privacy Policy</li></Link>
-                <Link to="/control" style={{ textDecoration: 'none'}}><li className='footerList'>Control</li></Link>
+                <Link to="/control" style={{ textDecoration: 'none'}}><li onClick={promptFunction} className='footerList'>Control</li></Link>
                 </ul>
             </nav>
 
@@ -31,6 +43,7 @@ const Footer = () => {
 
 
         </footer>
+        </React.Fragment>
     )
 }
 
