@@ -132,6 +132,43 @@ if (process.env.NODE_ENV === 'production') {
     res.send('this thing is working!')
 })
 
+app.post('/verifyPassword', async (req, res) => {
+    const { password } = req.body;
+
+    try {
+        const passwordData = await db.collection('passwords').findOne({});
+        if (password === passwordData.passwordData.currentPassword) {
+            res.status(200).json({ verified: true });
+        } else {
+            res.status(401).json({ verified: false, message: 'Incorrect password.' });
+        }
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'An error occurred while verifying the password.' });
+    }
+});
+
+
+app.post('/changePassword', async (req, res) => {
+    const { tempPassword, newPassword } = req.body;
+
+    try {
+        const passwordData = await db.collection('passwords').findOne({});
+        if (tempPassword === passwordData.passwordData.temporaryPassword) {
+            await db.collection('passwords').updateOne({}, {
+                $set: { 'passwordData.currentPassword': newPassword, 'passwordData.temporaryPassword': '' } // Clear the temporary password after it's used
+            });
+            res.status(200).json({ message: 'Password changed successfully.' });
+        } else {
+            res.status(401).json({ error: 'Incorrect temporary password.' });
+        }
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'An error occurred while changing the password.' });
+    }
+});
+
+
 
 const port = process.env.PORT || 4000;
 
