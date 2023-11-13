@@ -16,6 +16,7 @@ const PasswordPrompt = ({ onEnter, onForgotPassword }) => {
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          style = {{width: '90%'}}
         />
         <div className="buttons">
           <button onClick={handleEnter} className="enter">Enter</button>
