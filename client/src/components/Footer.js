@@ -11,11 +11,15 @@ const promptFunction = () => {
     setIsPromptOpen(true);
 }
 
+const handleClose = () => {
+    setIsPromptOpen(false); // This function will close the password prompt
+};
+
 
 
     return(
         <React.Fragment>
-        {isPromptOpen && <PasswordPrompt />}
+        {isPromptOpen && <PasswordPrompt  onClose={handleClose} />}
         <footer className='theFooter'>
 
 <Link to='/'><img style={{ textDecoration: 'none', color: 'inherit', overflow: 'hidden' }} src='/MogulLogo.png' alt='the mogo logo' className='footerHomeLogo'></img></Link>
@@ -35,7 +39,7 @@ const promptFunction = () => {
                 <Link to="/sets" style={{ textDecoration: 'none'}}><li className='footerList'>Sets</li></Link>
                 <Link to="/about" style={{ textDecoration: 'none'}}><li className='footerList'>About</li></Link>
                 <Link to="/privacyPolicy" style={{ textDecoration: 'none'}}><li className='footerList'>Privacy Policy</li></Link>
-                <Link to="/control" style={{ textDecoration: 'none'}}><li onClick={promptFunction} className='footerList'>Control</li></Link>
+                <li onClick={promptFunction} className='footerList'>Control</li>
                 </ul>
             </nav>
 
