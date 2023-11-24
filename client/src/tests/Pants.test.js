@@ -7,7 +7,7 @@ const sinon = require('sinon');
 const Axios = require('axios');
 
 // Component to be tested
-const Pants = require('./Pants'); // Adjust the path according to your project structure
+const Pants = require('../components/Pants'); // Adjust the path according to your project structure
 
 // Set up the DOM environment
 const { window } = new JSDOM('<!doctype html><html><body></body></html>');
@@ -44,6 +44,5 @@ describe('Pants Component', () => {
     }, 0);
   });
 
-  // Additional tests can be added here
 });
 
