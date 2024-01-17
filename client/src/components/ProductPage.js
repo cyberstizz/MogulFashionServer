@@ -14,7 +14,7 @@ const ProductPage = () => {
 
 
     const apiUrl = process.env.NODE_ENV === 'production'
-    ? 'https://mogulfashion-65ec42dc2783.herokuapp.com'
+    ? 'https://mogulfashionbase-615d24b1a925.herokuapp.com'
     : 'http://localhost:4000';
 
     const getAllProducts = async () => {
