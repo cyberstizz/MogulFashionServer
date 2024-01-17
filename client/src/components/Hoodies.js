@@ -13,9 +13,8 @@ const Hoodies = () => {
     const [imagesLoaded, setImagesLoaded] = useState(false);
     const [loadedImagesCount, setLoadedImagesCount] = useState(0);
     const [AllHoodies, setAllHoodies] = useState([]);
-
     const apiUrl = process.env.NODE_ENV === 'production'
-    ? 'https://mogulfashion-65ec42dc2783.herokuapp.com'
+    ? 'https://mogulfashionbase-615d24b1a925.herokuapp.com'
     : 'http://localhost:4000';
 
 
