@@ -1,4 +1,4 @@
-# DesignHer Custom Kreations
+# Mogul Fashion Server
 This is a web application that showcases a wonderful line of products 
 designed by the Mogul Fashion brand. these items include skirts, dresses,
 sets, and other items for men. altogether if you are looking for the trendiest types of clothing available this is where to look. lastly, if you
@@ -16,7 +16,7 @@ are looking to have clothing designed then you can send inquiries to mogfash@gma
   <a href="#packages">Packages</a>   
 </p>
 <p align="center" >
-<a href="http://www.designhercustomkreation.com/">Try it out here</a> 
+<a href="https://mogulfashion-57557984f8cb.herokuapp.com/">Try it out here</a> 
 </p>
 
 ## Features
