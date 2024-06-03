@@ -41,7 +41,7 @@ To clone and run this application, you'll need [Git](https://git-scm.com), [Node
 
 ```bash
 # Clone this repository
-$ git clone git@github.com:cyberstizz/fulldesignherapplication.git
+$ git clone git@github.com:cyberstizz/MogulFashionServer.git
 
 # Install dependencies
 $ npm i
@@ -82,11 +82,15 @@ If you are into stylish design, especially the type that you find in New York Ci
 
 
 ### Biggest challenges
-my biggest challenge with DesignHer was successfully deploying it to AWS.
-I was used to simple deploys that allowed for attaching a a repo and the 
-rest of the work was done for you, however in this case i had to manage a
-full deployment in ways that i never expected. however overall it was a
-very informative experience.
+my biggest challenge with Mogul Fashion funny enough was actually creating the loader. i had already created the other features being used several ties in the past, however in this case i was tasked with creating a loader that will run when a page is not fully looaed yet. 
+
+To handle this i used a gif that i created in figma and loaded the gif on a page which centers it on the dom while the file is not completely loaded.
+
+This was accomplished using the react syntax &&
+
+which is effectively an if statement that works cleanly.
+
+the end.
 
 
 ### Code Review
