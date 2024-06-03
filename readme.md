@@ -100,8 +100,7 @@ as mentioned earlier Redux is used as the state management tool and stripe is us
 as the merchant.
 
 ### final thought
-DesignHer was a fun application where i learned a lot about cloud deploys
-and how to scale a system, which is the start of somethign great in the future.
+this was a fun application to work on, and will always be remembered as one of the first projects that i have built where i started with a mobile first approach.
 
 
 ### for more projects by CyberStizz visit: [Charleslambjr.com](https://www.charleslambjr.com/)
